@@ -1,20 +1,12 @@
-<section class="va-section va-story" data-va-section>
+<section class="va-pad va-block va-story">
+  <div class="va-row va-row--head"><span>{{ section.settings.title }}</span><span class="va-grey">{{ section.settings.year }}</span></div>
   <div class="va-story__grid">
-    <div class="va-story__year va-reveal" aria-hidden="true">{{ section.settings.year }}</div>
-    <div class="va-story__copy">
-      <p class="va-label va-reveal">{{ section.settings.kicker }}</p>
-      <h2 class="va-h2 va-reveal">{{ section.settings.title_1 }} <em>{{ section.settings.title_accent }}</em></h2>
-      <div class="va-story__text va-reveal">{{ section.settings.text }}</div>
-      <ul class="va-story__points va-reveal">
-        {%- for block in section.blocks -%}
-          <li {{ block.shopify_attributes }}>
-            <span class="va-mono">{{ forloop.index | prepend: '0' }}</span>
-            <strong>{{ block.settings.title }}</strong>
-            <span>{{ block.settings.text }}</span>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </div>
+    <div class="va-story__text">{{ section.settings.text }}</div>
+    <table class="va-table">
+      {%- for block in section.blocks -%}
+        <tr {{ block.shopify_attributes }}><td>{{ forloop.index | prepend: '0' }} — {{ block.settings.title }}</td><td>{{ block.settings.text }}</td></tr>
+      {%- endfor -%}
+    </table>
   </div>
 </section>
 
@@ -23,18 +15,16 @@
   "name": "VA · Storia",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "year", "label": "Anno grande", "default": "1995" },
-    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Chi siamo" },
-    { "type": "text", "id": "title_1", "label": "Titolo", "default": "Dal mercato di Resina" },
-    { "type": "text", "id": "title_accent", "label": "Titolo (corsivo)", "default": "all'archivio." },
-    { "type": "richtext", "id": "text", "label": "Testo", "default": "<p>Vintagism nasce nel 1995 tra i banchi del mercato di Resina. Da allora selezioniamo vintage per boutique e rivenditori in tutta Europa. Vintagism Archive è la nostra selezione al pezzo: i capi migliori che passano dal magazzino, controllati, misurati e fotografati.</p>" }
+    { "type": "text", "id": "title", "label": "Titolo riga", "default": "Chi siamo" },
+    { "type": "text", "id": "year", "label": "Anno", "default": "Est. 1995" },
+    { "type": "richtext", "id": "text", "label": "Testo", "default": "<p>Vintagism nasce nel 1995 tra i banchi del mercato di Resina. Da allora selezioniamo vintage per boutique e rivenditori in tutta Europa. Vintagism Archive è la selezione al pezzo: i capi migliori che passano dal magazzino.</p>" }
   ],
   "blocks": [
     {
       "type": "point",
-      "name": "Punto",
+      "name": "Riga",
       "settings": [
-        { "type": "text", "id": "title", "label": "Titolo", "default": "Selezione" },
+        { "type": "text", "id": "title", "label": "Voce", "default": "Selezione" },
         { "type": "text", "id": "text", "label": "Testo", "default": "Ogni capo è scelto a mano." }
       ]
     }

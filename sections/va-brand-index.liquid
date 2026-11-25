@@ -9,15 +9,11 @@
   endfor
   assign letters_arr = letters | split: ''
 -%}
-<section class="va-section va-brands" data-va-section>
-  <header class="va-section__head">
-    <div>
-      <p class="va-label">{{ section.settings.kicker }}</p>
-      <h2 class="va-h2">{{ section.settings.title_1 }} <em>{{ section.settings.title_accent }}</em></h2>
-    </div>
-    <p class="va-brands__count va-mono">{{ vendors.size }} brand in archivio</p>
-  </header>
-
+<section class="va-pad va-block va-brands">
+  <div class="va-row va-row--head">
+    <span>{{ section.settings.title }}</span>
+    <span class="va-grey">{{ vendors.size | prepend: '000' | slice: -3, 3 }}</span>
+  </div>
   {%- if vendors.size > 0 -%}
     <nav class="va-brands__letters" aria-label="Lettere">
       {%- for l in letters_arr -%}<a href="#va-brand-{{ l }}">{{ l }}</a>{%- endfor -%}
@@ -25,7 +21,7 @@
     <div class="va-brands__cols">
       {%- for l in letters_arr -%}
         <div class="va-brands__group" id="va-brand-{{ l }}">
-          <span class="va-brands__letter">{{ l }}</span>
+          <p class="va-brands__letter">{{ l }}</p>
           <ul>
             {%- for v in vendors -%}
               {%- assign first = v | slice: 0 | upcase -%}
@@ -38,7 +34,7 @@
                     endif
                   endfor
                 -%}
-                <li><a href="{{ v | url_for_vendor }}">{{ v }}</a><span class="va-mono">{{ c }}</span></li>
+                <li><a href="{{ v | url_for_vendor }}"><span>{{ v }}</span><span class="va-grey">{{ c | prepend: '00' | slice: -3, 3 }}</span></a></li>
               {%- endif -%}
             {%- endfor -%}
           </ul>
@@ -55,9 +51,7 @@
   "name": "VA · Brand A–Z",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Designer" },
-    { "type": "text", "id": "title_1", "label": "Titolo", "default": "Brand" },
-    { "type": "text", "id": "title_accent", "label": "Titolo (corsivo)", "default": "dalla A alla Z" }
+    { "type": "text", "id": "title", "label": "Titolo riga", "default": "Brand A–Z" }
   ],
   "presets": [{ "name": "VA · Brand A–Z" }]
 }

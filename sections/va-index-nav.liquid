@@ -1,0 +1,132 @@
+{%- comment -%}
+  Indice dell'archivio. Desktop: colonna fissa a sinistra con logo e categorie numerate.
+  Mobile: riga di categorie scorrevole sotto l'header.
+  I link puntano a pagine native di Shopify (tag, tipo prodotto, vista brand): nessuna collezione da creare.
+{%- endcomment -%}
+{%- liquid
+  assign total = collections.all.products_count
+-%}
+<aside class="va-index" aria-label="Indice archivio">
+  <div class="va-index__top">
+    <a class="va-index__logo" href="{{ routes.root_url }}">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'va-index__logo-img' }}
+      {%- else -%}
+        {% render 'va-wordmark' %}
+      {%- endif -%}
+    </a>
+    <nav class="va-index__nav">
+      {%- assign open = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'group' -%}
+          {%- if open -%}</ol>{%- endif -%}
+          <ol class="va-index__list" {{ block.shopify_attributes }}>
+          {%- assign open = true -%}
+          {%- continue -%}
+        {%- endif -%}
+        {%- unless open -%}<ol class="va-index__list">{%- assign open = true -%}{%- endunless -%}
+        {%- liquid
+          assign url = block.settings.url
+          assign is_current = false
+          assign full = request.path
+          if request.page_type == 'collection' and collection.current_type != blank
+            assign full = request.path | append: '?q=' | append: collection.current_type
+          endif
+          if url == request.path or url == full
+            assign is_current = true
+          endif
+          if current_tags and url contains current_tags.first
+            assign is_current = true
+          endif
+
+          assign count = blank
+          if block.settings.show_count
+            assign match = block.settings.match_type | downcase | strip
+            assign match_tag = block.settings.match_tag | downcase | strip
+            assign c = 0
+            for product in collections.all.products
+              assign ok = true
+              if match != blank
+                assign ptype = product.type | downcase
+                if ptype != match
+                  assign ok = false
+                endif
+              endif
+              if match_tag != blank
+                assign tags_down = product.tags | join: '|' | downcase | split: '|'
+                unless tags_down contains match_tag
+                  assign ok = false
+                endunless
+              endif
+              if ok
+                assign c = c | plus: 1
+              endif
+            endfor
+            if match == blank and match_tag == blank and block.settings.match_vendors
+              assign c = shop.vendors.size
+            endif
+            assign count = c | prepend: '000' | slice: -3, 3
+          endif
+        -%}
+        <li class="va-index__item{% if is_current %} is-current{% endif %}" {{ block.shopify_attributes }}>
+          <a href="{{ url }}"{% if is_current %} aria-current="page"{% endif %}>
+            <span>{{ block.settings.label }}</span>
+            {%- if count != blank -%}<span class="va-index__count">{{ count }}</span>{%- endif -%}
+          </a>
+        </li>
+      {%- endfor -%}
+      {%- if open -%}</ol>{%- endif -%}
+    </nav>
+  </div>
+  <div class="va-index__foot">
+    <span>{{ section.settings.footnote_1 }}</span>
+    <span>{{ section.settings.footnote_2 }}</span>
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "VA · Indice archivio",
+  "tag": "div",
+  "class": "va-index-section",
+  "settings": [
+    { "type": "text", "id": "footnote_1", "label": "Nota 1", "default": "Napoli — Est. 1995" },
+    { "type": "text", "id": "footnote_2", "label": "Nota 2", "default": "IT · EUR" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Voce",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Etichetta", "default": "Categoria" },
+        { "type": "text", "id": "url", "label": "Link (es. /collections/types?q=Borse)", "default": "/collections/all" },
+        { "type": "checkbox", "id": "show_count", "label": "Mostra numero pezzi", "default": true },
+        { "type": "text", "id": "match_type", "label": "Conta per tipo prodotto" },
+        { "type": "text", "id": "match_tag", "label": "Conta per tag" },
+        { "type": "checkbox", "id": "match_vendors", "label": "Conta i brand invece dei pezzi", "default": false }
+      ]
+    },
+    { "type": "group", "name": "Nuovo gruppo", "settings": [] }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link", "settings": { "label": "Tutto", "url": "/collections/all" } },
+      { "type": "link", "settings": { "label": "Capispalla", "url": "/collections/types?q=Capispalla", "match_type": "Capispalla" } },
+      { "type": "link", "settings": { "label": "Borse", "url": "/collections/types?q=Borse", "match_type": "Borse" } },
+      { "type": "link", "settings": { "label": "Scarpe", "url": "/collections/types?q=Scarpe", "match_type": "Scarpe" } },
+      { "type": "link", "settings": { "label": "Top", "url": "/collections/types?q=Top", "match_type": "Top" } },
+      { "type": "link", "settings": { "label": "Camicie", "url": "/collections/types?q=Camicie", "match_type": "Camicie" } },
+      { "type": "link", "settings": { "label": "Maglieria", "url": "/collections/types?q=Maglieria", "match_type": "Maglieria" } },
+      { "type": "link", "settings": { "label": "Pantaloni / Gonne", "url": "/collections/types?q=Pantaloni%20e%20gonne", "match_type": "Pantaloni e gonne" } },
+      { "type": "link", "settings": { "label": "Abiti", "url": "/collections/types?q=Abiti", "match_type": "Abiti" } },
+      { "type": "link", "settings": { "label": "Accessori", "url": "/collections/types?q=Accessori", "match_type": "Accessori" } },
+      { "type": "group" },
+      { "type": "link", "settings": { "label": "Donna", "url": "/collections/all/donna", "match_tag": "donna" } },
+      { "type": "link", "settings": { "label": "Uomo", "url": "/collections/all/uomo", "match_tag": "uomo" } },
+      { "type": "link", "settings": { "label": "Brand A–Z", "url": "/collections/all?view=brands", "match_vendors": true } },
+      { "type": "link", "settings": { "label": "Rare", "url": "/collections/all/rare", "match_tag": "rare" } },
+      { "type": "link", "settings": { "label": "Sotto 50€", "url": "/collections/all/sotto50", "match_tag": "sotto50" } }
+    ]
+  }
+}
+{% endschema %}

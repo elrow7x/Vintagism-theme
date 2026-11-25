@@ -1,40 +1,44 @@
-# Vintagism Archive — Design system
+# Vintagism Archive — Design system · direzione "Index"
 
-Tema Shopify basato su Horizon 4.5.0. Collegato al negozio `vintagism-archive-7z4gubsj` tramite integrazione GitHub (branch `main`).
+Tema Shopify basato su Horizon 4.5.0, collegato al negozio `vintagism-archive-7z4gubsj` tramite integrazione GitHub (repo `elrow7x/Vintagism-theme`, branch `main`).
 Progetto: linea retail "al pezzo" di Vintagism S.R.L. (wholesale vintage al kg dal 1995, nato al mercato di Resina).
+Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine anni '90 / primi 2000, archivio concettuale.
 
 ## Ancore
-- **Colore**: oro del logo `#B48D54` + il cemento/intonaco grigio dei set fotografici reali.
-- **Motivo**: le due squadrette d'angolo del logo → cornici/crop-mark su immagini, intestazioni, focus. "Scheda d'archivio" con numero di inventario per ogni capo.
-- **Tono**: esperto, essenziale, verace.
+- **Colore**: bianco puro + nero. Oro del logo `#B48D54` solo come segnale (squadrette all'hover, una riga del manifesto).
+- **Motivo**: le squadrette d'angolo del logo, filetto 1px, su immagini e logotipo. Righe con filetto come link.
+- **Tono**: silenzioso, preciso, da catalogo. Numeri di inventario e conteggi a 3 cifre (`010`, `046`).
 
-## Palette (ruoli)
-| Nome | Hex | Ruolo |
+## Token (snippets/va-head.liquid)
+| Token | Valore | Uso |
 |---|---|---|
-| Intonaco | `#F3F1ED` | sfondo carta |
-| Cemento | `#D9D6D0` | superfici, bordi, sfondo card |
-| Nero balla | `#171614` | testo, bottoni primari, badge SOLD |
-| Oro Vintagism | `#B48D54` | accento grande: squadrette, linee, numeri display (mai testo piccolo: contrasto < 4.5) |
-| Ottone | `#7A5A2B` | link e testo accento piccolo (contrasto ≥ 4.5 su Intonaco) |
+| `--va-k` | `#000` | testo, filetti, tag Rare |
+| `--va-w` | `#fff` | sfondo |
+| `--va-grey` | `#6f6f6f` | testo secondario (contrasto ≥ 4.5) |
+| `--va-line` | `#e6e6e6` | filetti secondari |
+| `--va-soft` | `#f2f2f2` | sfondo immagini in caricamento |
+| `--va-oro` | `#b48d54` | solo accento, mai testo piccolo |
 
 ## Tipografia
-- Titoli: grotesk largo, maiuscolo, tracking ampio come nel logo (Archivo Expanded / larghezza variabile). Interlinea 0,9.
-- Accento: serif corsivo leggero dentro i titoli, con parsimonia.
-- Dati (misure, taglia, N° inventario, prezzo): monospace.
-- Testo: 1,6 di interlinea, scala fluida con `clamp()`.
+- Un solo carattere: **Archivo** 400/500/600, self-hosted.
+- Servizio (nav, card, tabelle): 11px, maiuscolo, tracking 0.06em.
+- Titoli: 500, maiuscolo, interlinea ~1, al massimo uno per schermata.
+- Testo corrente: 13px, interlinea 1.6.
 
-## Componenti
-- Card prodotto 4:5 (formato delle foto), squadrette oro che si chiudono sull'immagine all'hover, badge SOLD / RARE / NEW.
-- Titolo standard: `Decennio · Brand · Materiale/colore · Capo` + taglia.
-- Scheda capo = "scheda d'archivio": Brand, Decennio, Taglia etichetta, Misure cm, Condizione (A/B/C), Difetti, N° inventario.
-- Navigazione: per tipo di capo (Donna/Uomo → Capispalla, Top, Bottom, Maglieria, Scarpe, Borse, Accessori) + Brand A–Z + collezioni curate (Rare, Sotto 50€, Nuovi arrivi).
+## Layout
+- Desktop: indice fisso a sinistra (220px) con logo e categorie numerate (`sections/va-index-nav.liquid`, static section in layout). L'header Horizon resta per cerca/account/borsa (logo e menu nascosti via CSS ≥990px).
+- Mobile: l'indice diventa una riga scorrevole sotto l'header.
+- Griglia 4 colonne desktop, 3 tablet, 2 mobile. Foto 4:5.
+- Scheda capo = tabella (`blocks/va-archive-card.liquid`).
+
+## Dati del capo
+Letti da metafield `custom.<chiave>` o, in mancanza, da tag `chiave:valore`:
+`decennio`, `taglia`, `misure`, `condizione`, `difetti`, `materiale`, `inv`. Tag di servizio: `donna`, `uomo`, `rare`, `new`, `sotto50`.
+Link di navigazione su pagine native Shopify: `/collections/types?q=<Tipo>`, `/collections/all/<tag>`, `/collections/all?view=brands`.
 
 ## Da evitare
-Nero+oro "luxury" su fondo scuro, Playfair/Inter, bento grid, glassmorphism, titoli centrati con sottotitolo grigio.
-
-## Movimento e texture
-- Ingressi allo scroll con `animation-timeline: view()`, squadrette all'hover; tutto off con `prefers-reduced-motion`.
-- Grana leggera da cemento sullo sfondo.
+Mix di caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento grid, glassmorphism, animazioni decorative.
 
 ## Registro feedback
-- (vuoto)
+- 25.11.2026 · Prima direzione (grotesk espanso + serif corsivo Instrument, sfondo intonaco, grana) **scartata**: "alternanza di font non funziona", serve più carattere e minimalismo per un top spender.
+- 25.11.2026 · Proposte A Index / B Inventario (mono) / C Negativo (nero, condensato). **Scelta A · Index**. Aggiunto manifesto nero (da C) come unica sezione d'impatto, rimovibile dall'editor.

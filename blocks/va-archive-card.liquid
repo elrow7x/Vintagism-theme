@@ -1,6 +1,6 @@
 {% doc %}
-  Scheda d'archivio Vintagism: brand, decennio, taglia, misure, condizione, difetti, N° inventario.
-  I dati arrivano dai metafield custom.* o, in alternativa, dai tag "chiave:valore".
+  Scheda d'archivio · direzione Index: tabella con N° inventario, brand, decennio, taglia, materiale,
+  misure, condizione, difetti. Dati da metafield custom.* o, in alternativa, dai tag "chiave:valore".
 {% enddoc %}
 {%- liquid
   assign p = closest.product
@@ -17,25 +17,18 @@
   {%- capture f_def -%}{%- render 'va-archive-field', product: p, key: 'difetti' -%}{%- endcapture -%}
   {%- capture f_mat -%}{%- render 'va-archive-field', product: p, key: 'materiale' -%}{%- endcapture -%}
 
-  <div class="va-archive-card va-brackets" {{ block.shopify_attributes }}>
-    <div class="va-archive-card__head">
-      <span class="va-label">{{ block.settings.heading }}</span>
-      {%- if f_inv != blank -%}<span class="va-archive-card__inv">N° {{ f_inv }}</span>{%- endif -%}
-    </div>
-    <dl class="va-archive-card__grid">
-      {%- if p.vendor != blank -%}
-        <div><dt>Brand</dt><dd><a href="{{ p.vendor | url_for_vendor }}">{{ p.vendor }}</a></dd></div>
-      {%- endif -%}
-      {%- if f_dec != blank -%}<div><dt>Decennio</dt><dd>{{ f_dec }}</dd></div>{%- endif -%}
-      {%- if f_size != blank -%}<div><dt>Taglia etichetta</dt><dd>{{ f_size }}</dd></div>{%- endif -%}
-      {%- if f_mat != blank -%}<div><dt>Materiale</dt><dd>{{ f_mat }}</dd></div>{%- endif -%}
-      {%- if f_meas != blank -%}<div class="va-archive-card__wide"><dt>Misure in piano (cm)</dt><dd>{{ f_meas }}</dd></div>{%- endif -%}
-      {%- if f_cond != blank -%}<div><dt>Condizione</dt><dd>{{ f_cond }}</dd></div>{%- endif -%}
-      {%- if f_def != blank -%}<div><dt>Difetti</dt><dd>{{ f_def }}</dd></div>{%- endif -%}
-    </dl>
-    {%- if block.settings.note != blank -%}
-      <p class="va-archive-card__note">{{ block.settings.note }}</p>
-    {%- endif -%}
+  <div class="va-sheet" {{ block.shopify_attributes }}>
+    {%- if f_inv != blank -%}<p class="va-meta">{{ f_inv }}</p>{%- endif -%}
+    <table class="va-table">
+      {%- if p.vendor != blank -%}<tr><td>Brand</td><td><a href="{{ p.vendor | url_for_vendor }}">{{ p.vendor }}</a></td></tr>{%- endif -%}
+      {%- if f_dec != blank -%}<tr><td>Decennio</td><td>{{ f_dec }}</td></tr>{%- endif -%}
+      {%- if f_size != blank -%}<tr><td>Taglia</td><td>{{ f_size }}</td></tr>{%- endif -%}
+      {%- if f_mat != blank -%}<tr><td>Materiale</td><td>{{ f_mat }}</td></tr>{%- endif -%}
+      {%- if f_meas != blank -%}<tr><td>Misure cm</td><td>{{ f_meas }}</td></tr>{%- endif -%}
+      {%- if f_cond != blank -%}<tr><td>Condizione</td><td>{{ f_cond }}</td></tr>{%- endif -%}
+      {%- if f_def != blank -%}<tr><td>Difetti</td><td>{{ f_def }}</td></tr>{%- endif -%}
+    </table>
+    {%- if block.settings.note != blank -%}<p class="va-sheet__note">{{ block.settings.note }}</p>{%- endif -%}
   </div>
 {%- endif -%}
 
@@ -44,8 +37,7 @@
   "name": "Scheda d'archivio",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "heading", "label": "Titolo", "default": "Scheda d'archivio" },
-    { "type": "text", "id": "note", "label": "Nota sotto la scheda", "default": "Pezzo unico. Misure prese a capo disteso: confrontale con un tuo capo simile." }
+    { "type": "text", "id": "note", "label": "Nota sotto la scheda", "default": "Pezzo unico. Misure prese a capo disteso." }
   ],
   "presets": [{ "name": "Scheda d'archivio" }]
 }

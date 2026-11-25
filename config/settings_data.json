@@ -73,17 +73,17 @@
     "variant_button_radius": 0,
     "variant_button_width": "equal-width-buttons",
     "content_for_index": [],
-    "badge_sold_out_background_color": "#171614",
+    "badge_sold_out_background_color": "#FFFFFF",
     "palette_input_border": "{{ settings.color_palette.color3 }}",
     "palette_variant_border": "{{ settings.color_palette.color3 }}",
     "color_palette": {
-      "background": "#F3F1ED",
-      "foreground": "#171614",
-      "color1": "#E9E6E0",
-      "color2": "#D9D6D0",
-      "color3": "#C9C5BE"
+      "background": "#FFFFFF",
+      "foreground": "#000000",
+      "color1": "#FFFFFF",
+      "color2": "#F2F2F2",
+      "color3": "#E6E6E6"
     },
-    "badge_sold_out_text_color": "#F3F1ED"
+    "badge_sold_out_text_color": "#000000"
   },
   "presets": {
     "Default": {

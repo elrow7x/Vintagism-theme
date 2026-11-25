@@ -1,5 +1,5 @@
 {% doc %}
-  Card capo Vintagism Archive: foto 4:5 con squadrette, badge, brand, titolo, taglia, prezzo.
+  Card capo · direzione Index: foto 4:5 con squadrette, etichetta Sold/Rare, due righe di dati.
 
   @param {product} product
   @param {string} [sizes] - attributo sizes per l'immagine
@@ -8,22 +8,15 @@
   capture f_size
     render 'va-archive-field', product: product, key: 'taglia'
   endcapture
-  capture f_inv
-    render 'va-archive-field', product: product, key: 'inv'
-  endcapture
   assign tags_down = product.tags | join: '|' | downcase | split: '|'
   assign img = product.featured_media
   assign img2 = product.media[1]
-  assign title_clean = product.title
-  if product.vendor != blank
-    assign title_clean = title_clean | remove: product.vendor
-  endif
-  assign title_parts = title_clean | split: ' · '
-  assign title_short = title_parts | last
+  assign title_parts = product.title | split: ' · '
+  assign title_short = title_parts | last | strip
 -%}
 <article class="va-card{% unless product.available %} is-sold{% endunless %}">
   <a class="va-card__link" href="{{ product.url }}">
-    <div class="va-card__media va-brackets va-brackets--hover">
+    <div class="va-card__media va-br">
       {%- if img -%}
         {{ img | image_url: width: 900 | image_tag: loading: 'lazy', class: 'va-card__img', sizes: sizes, widths: '360, 540, 720, 900', alt: product.title }}
         {%- if img2 -%}
@@ -32,19 +25,17 @@
       {%- else -%}
         {{ 'product-apparel-1' | placeholder_svg_tag: 'va-card__img' }}
       {%- endif -%}
-      <div class="va-badges">
-        {%- unless product.available -%}<span class="va-badge va-badge--sold">Sold</span>{%- endunless -%}
-        {%- if tags_down contains 'rare' -%}<span class="va-badge va-badge--rare">Rare</span>{%- endif -%}
-        {%- if product.available and tags_down contains 'new' -%}<span class="va-badge">New</span>{%- endif -%}
-      </div>
+      {%- unless product.available -%}
+        <span class="va-tag">Sold</span>
+      {%- else -%}
+        {%- if tags_down contains 'rare' -%}<span class="va-tag va-tag--k">Rare</span>{%- elsif tags_down contains 'new' -%}<span class="va-tag">New</span>{%- endif -%}
+      {%- endunless -%}
     </div>
-    <div class="va-card__info">
-      <p class="va-card__brand">{{ product.vendor }}</p>
-      <h3 class="va-card__title">{{ title_short | strip }}</h3>
-      <p class="va-card__meta">
-        {%- if f_size != blank -%}<span>Tg. {{ f_size }}</span>{%- endif -%}
-        <span class="va-card__price">{{ product.price | money }}</span>
-      </p>
+    <div class="va-card__meta">
+      <span class="va-card__brand">{{ product.vendor }}</span>
+      <span class="va-card__price">{{ product.price | money_without_trailing_zeros }}</span>
+      <span class="va-card__name">{{ title_short }}</span>
+      <span class="va-card__size">{{ f_size }}</span>
     </div>
   </a>
 </article>

@@ -7,16 +7,11 @@
   assign filter_tag = section.settings.filter_tag | downcase | strip
   assign shown = 0
 -%}
-<section class="va-section va-grid-section" data-va-section>
-  <header class="va-section__head">
-    <div>
-      <p class="va-label">{{ section.settings.kicker }}</p>
-      <h2 class="va-h2">{{ section.settings.title_1 }} <em>{{ section.settings.title_accent }}</em></h2>
-    </div>
-    {%- if section.settings.link_label != blank -%}
-      <a class="va-link-arrow" href="{{ section.settings.link_url | default: '/collections/all' }}">{{ section.settings.link_label }}</a>
-    {%- endif -%}
-  </header>
+<section class="va-pad va-block">
+  <a class="va-row va-row--head" href="{{ section.settings.link_url | default: '/collections/all' }}">
+    <span>{{ section.settings.title }}</span>
+    <span class="va-grey">{{ section.settings.link_label }} →</span>
+  </a>
   <div class="va-grid">
     {%- for product in src.products -%}
       {%- liquid
@@ -31,7 +26,7 @@
         endif
         assign shown = shown | plus: 1
       -%}
-      <div class="va-reveal">{% render 'va-card', product: product, sizes: '(min-width: 990px) 25vw, 50vw' %}</div>
+      {% render 'va-card', product: product, sizes: '(min-width: 990px) 20vw, 50vw' %}
     {%- else -%}
       <p class="va-empty">[Da completare] Importa i prodotti demo per vedere la griglia.</p>
     {%- endfor -%}
@@ -43,9 +38,7 @@
   "name": "VA · Griglia capi",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Nuovi in archivio" },
-    { "type": "text", "id": "title_1", "label": "Titolo", "default": "Appena" },
-    { "type": "text", "id": "title_accent", "label": "Titolo (corsivo)", "default": "catalogati" },
+    { "type": "text", "id": "title", "label": "Titolo riga", "default": "Nuovi in archivio" },
     { "type": "collection", "id": "collection", "label": "Collezione (vuoto = tutti i capi)" },
     { "type": "text", "id": "filter_tag", "label": "Filtra per tag (es. rare)" },
     { "type": "range", "id": "limit", "label": "Numero capi", "min": 4, "max": 24, "step": 4, "default": 8 },

@@ -270,8 +270,7 @@
             "va_archive": {
               "type": "va-archive-card",
               "settings": {
-                "heading": "Scheda d'archivio",
-                "note": "Pezzo unico. Misure prese a capo disteso: confrontale con un tuo capo simile."
+                "note": "Pezzo unico. Misure prese a capo disteso."
               }
             }
           },

@@ -22,7 +22,37 @@ h1, h2, h3, h4, .h1, .h2, .h3,
 
 /* testo di servizio: piccolo, maiuscolo, spaziato */
 .va-meta, .va-row, .va-index, .va-card__meta, .va-tag, .va-table, .va-brands, .va-sheet__note,
-.va-index__foot, /* Logo quadrato (assets/va-logo.svg) */
+.va-index__foot {
+  font-family: var(--va-font);
+  font-size: 11px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.va-meta { color: var(--va-grey); margin: 0 0 12px; }
+.va-grey { color: var(--va-grey); }
+.va-pad { padding-inline: var(--va-pad); }
+.va-block { margin-block: clamp(48px, 7vw, 96px); }
+.va-empty { font-size: 11px; text-transform: uppercase; padding: 16px; border: 1px dashed var(--va-k); }
+
+/* ---------- Squadrette (motivo dal logo) ---------- */
+.va-br { position: relative; }
+.va-br::before, .va-br::after {
+  content: '';
+  position: absolute;
+  width: var(--va-bracket);
+  height: var(--va-bracket);
+  border: 0 solid var(--va-oro);
+  z-index: 2;
+  pointer-events: none;
+  transition: inset 0.25s, border-color 0.2s;
+}
+.va-br::before { top: -7px; left: -7px; border-top-width: 1px; border-left-width: 1px; }
+.va-br::after { bottom: -7px; right: -7px; border-bottom-width: 1px; border-right-width: 1px; }
+a:hover .va-br::before, a:focus-visible .va-br::before { top: -3px; left: -3px; }
+a:hover .va-br::after, a:focus-visible .va-br::after { bottom: -3px; right: -3px; }
+
+/* Logo quadrato (assets/va-logo.svg) */
 .va-logo { display: block; width: 100%; height: auto; }
 .va-index__logo { display: block; width: 112px; }
 #header-group .va-logo { width: auto; height: var(--header-logo-height, 52px); max-height: 52px; }

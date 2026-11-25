@@ -6,7 +6,7 @@ Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine a
 
 ## Ancore
 - **Colore**: bianco puro + nero. Oro del logo `#B48C55` come colore di segnale: squadrette, tag Rare, voce attiva, hover.
-- **Logo**: `assets/va-logo.svg` (quadrato 600×600, oro con banda ARCHIVE). Indice laterale 112px, header mobile 44px, favicon se non impostata.
+- **Logo**: orizzontale `assets/va-logo-h.svg` (900×360) in indice e header; quadrato `assets/va-logo.svg` solo come favicon (`variant: 'square'` nello snippet `va-wordmark`).
 - **Motivo**: le squadrette d'angolo del logo, filetto 1px oro, su immagini; all'hover si chiudono di 4px. Righe con filetto come link.
 - **Tono**: silenzioso, preciso, da catalogo. Numeri di inventario e conteggi a 3 cifre (`010`, `046`).
 
@@ -28,7 +28,7 @@ Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine a
 - Testo corrente: 13px, interlinea 1.6.
 
 ## Layout
-- Desktop: indice fisso a sinistra (220px) con logo e categorie numerate (`sections/va-index-nav.liquid`, static section in layout). L'header Horizon resta per cerca/account/borsa (logo e menu nascosti via CSS ≥990px).
+- Desktop: indice fisso a sinistra (220px), alto 100dvh, senza barra di scorrimento: spazi e corpo scalano in vh con logo e categorie numerate (`sections/va-index-nav.liquid`, static section in layout). L'header Horizon resta per cerca/account/borsa (logo e menu nascosti via CSS ≥990px).
 - Mobile: l'indice diventa una riga scorrevole sotto l'header.
 - Griglia 4 colonne desktop, 3 tablet, 2 mobile. Foto 4:5.
 - Scheda capo = tabella (`blocks/va-archive-card.liquid`).
@@ -48,3 +48,4 @@ Più di due caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento 
 - 25.11.2026 · Titoli passati a **Inter** su richiesta: parallelismo con vintagism.eu (Inter nel sito; i titoli grandi lì sono in Barlow Condensed).
 - 25.11.2026 · Titoli da Inter a **Barlow Condensed 600**, su richiesta: è il carattere dei titoli di vintagism.eu. Corpo titoli aumentato del ~25% perché il condensato a parità di corpo appare più piccolo.
 - 25.11.2026 · Arrivato il **logo ufficiale quadrato** (SVG, oro #B48C55): sostituisce il logotipo testuale. L'oro passa da solo segnale a colore d'accento su squadrette, tag Rare, voce attiva e hover. Testo sempre nero su oro (contrasto).
+- 25.11.2026 · Logo **orizzontale** al posto del quadrato (va meglio in indice e header). Indice laterale senza scrollbar: tutto in altezza schermo con misure in vh.

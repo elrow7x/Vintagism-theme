@@ -54,9 +54,9 @@ a:hover .va-br::after, a:focus-visible .va-br::after { bottom: -3px; right: -3px
 
 /* Logo quadrato (assets/va-logo.svg) */
 .va-logo { display: block; width: 100%; height: auto; }
-.va-index__logo { display: block; width: 112px; }
-#header-group .va-logo { width: auto; height: var(--header-logo-height, 52px); max-height: 52px; }
-@media (max-width: 749px) { #header-group .va-logo { max-height: 44px; } }
+.va-index__logo { display: block; width: 100%; margin-left: -6px; }
+#header-group .va-logo { width: auto; height: 56px; max-width: 150px; object-fit: contain; }
+@media (max-width: 749px) { #header-group .va-logo { height: 46px; } }
 
 /* ---------- Righe con filetto (link, intestazioni) ---------- */
 .va-row {
@@ -88,21 +88,34 @@ a.va-row:hover { border-top-color: var(--va-oro); }
 
 @media (min-width: 990px) {
   .page-wrapper { padding-left: var(--va-side); }
+  /* Indice: sempre tutto nell'altezza dello schermo, niente barra di scorrimento.
+     Spazi e corpo scalano con l'altezza (vh), così entra da un 13" a un monitor alto. */
   .va-index {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
+    height: 100vh;
+    height: 100dvh;
     width: var(--va-side);
     z-index: 30;
-    padding: 28px 24px;
+    padding: clamp(14px, 3vh, 28px) 24px clamp(12px, 2.4vh, 24px);
     border-right: 1px solid var(--va-k);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-y: auto;
+    overflow: hidden;
+    font-size: clamp(9.5px, 1.45vh, 11px);
   }
-  .va-index__nav { margin-top: 36px; display: grid; gap: 28px; }
+  .va-index__nav { margin-top: clamp(10px, 3.2vh, 36px); display: grid; gap: clamp(8px, 2.6vh, 28px); }
+  .va-index__item a { padding: clamp(1px, 0.5vh, 5px) 0; }
+  .va-index__logo { max-height: clamp(48px, 9vh, 76px); }
+  .va-index__logo .va-logo { height: 100%; width: auto; max-width: 100%; }
+  .va-index__foot { font-size: inherit; }
+  /* schermi molto bassi: scorre, ma senza barra visibile */
+  @media (max-height: 520px) {
+    .va-index { overflow-y: auto; scrollbar-width: none; }
+    .va-index::-webkit-scrollbar { display: none; }
+  }
   /* l'header di Horizon resta per cerca / account / borsa */
   #header-group .header-logo,
   #header-group header-menu { display: none !important; }

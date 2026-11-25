@@ -1,14 +1,27 @@
 {% doc %}
-  Logo Vintagism Archive (quadrato, oro #B48C55) da assets/va-logo.svg.
+  Logo Vintagism Archive, oro #B48C55.
+  Orizzontale (assets/va-logo-h.svg, 900×360) di default; quadrato (assets/va-logo.svg) con variant: 'square'.
   Usato quando nelle impostazioni del tema non è caricato un logo immagine.
 
+  @param {string} [variant] - 'square' per il logo quadrato
   @param {string} [class] - classe CSS aggiuntiva
 {% enddoc %}
+{%- liquid
+  if variant == 'square'
+    assign file = 'va-logo.svg'
+    assign w = 600
+    assign h = 600
+  else
+    assign file = 'va-logo-h.svg'
+    assign w = 900
+    assign h = 360
+  endif
+-%}
 <img
   class="va-logo{% if class %} {{ class }}{% endif %}"
-  src="{{ 'va-logo.svg' | asset_url }}"
+  src="{{ file | asset_url }}"
   alt="Vintagism Archive"
-  width="600"
-  height="600"
+  width="{{ w }}"
+  height="{{ h }}"
   loading="eager"
 >

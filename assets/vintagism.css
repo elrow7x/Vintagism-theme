@@ -162,7 +162,10 @@ a.va-row:hover span:first-child::before { content: '— '; }
 .va-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s; }
 .va-card__img--alt { opacity: 0; }
 .va-card__link:hover .va-card__img--alt { opacity: 1; }
+/* Venduto: solo la prima foto, schiarita; niente seconda foto in hover (evita la sovrapposizione) */
 .va-card.is-sold .va-card__img { opacity: 0.35; }
+.va-card.is-sold .va-card__img--alt,
+.va-card.is-sold .va-card__link:hover .va-card__img--alt { opacity: 0; }
 .va-card__meta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; margin-top: 10px; }
 .va-card__name, .va-card__size { color: var(--va-grey); }
 .va-card.is-sold .va-card__price { text-decoration: line-through; color: var(--va-grey); }

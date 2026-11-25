@@ -2,7 +2,7 @@
   assign img = section.settings.image
   if img == blank
     for p in collections.all.products
-      if p.available and p.featured_media
+      if p.available and p.featured_media and p.vendor != 'Vintagism Selection'
         assign img = p.featured_media
         break
       endif

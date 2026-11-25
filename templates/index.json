@@ -11,7 +11,8 @@
         "filter_tag": "",
         "limit": 8,
         "link_label": "Tutto l'archivio",
-        "link_url": "/collections/all"
+        "link_url": "/collections/all",
+        "exclude_vendor": "Vintagism Selection"
       }
     },
     "manifesto": {

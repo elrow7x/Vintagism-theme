@@ -6,6 +6,7 @@
   assign limit = section.settings.limit
   assign filter_tag = section.settings.filter_tag | downcase | strip
   assign shown = 0
+  assign exclude = section.settings.exclude_vendor | downcase | strip
 -%}
 <section class="va-pad va-block">
   <a class="va-row va-row--head" href="{{ section.settings.link_url | default: '/collections/all' }}">
@@ -17,6 +18,12 @@
       {%- liquid
         if shown >= limit
           break
+        endif
+        if exclude != blank
+          assign v_down = product.vendor | downcase
+          if v_down == exclude
+            continue
+          endif
         endif
         if filter_tag != blank
           assign tags_down = product.tags | join: '|' | downcase | split: '|'
@@ -41,6 +48,7 @@
     { "type": "text", "id": "title", "label": "Titolo riga", "default": "Nuovi in archivio" },
     { "type": "collection", "id": "collection", "label": "Collezione (vuoto = tutti i capi)" },
     { "type": "text", "id": "filter_tag", "label": "Filtra per tag (es. rare)" },
+    { "type": "text", "id": "exclude_vendor", "label": "Escludi brand (es. Vintagism Selection)" },
     { "type": "range", "id": "limit", "label": "Numero capi", "min": 4, "max": 24, "step": 4, "default": 8 },
     { "type": "text", "id": "link_label", "label": "Testo link", "default": "Vedi tutto" },
     { "type": "text", "id": "link_url", "label": "Link", "default": "/collections/all" }

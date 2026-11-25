@@ -5,8 +5,9 @@ Progetto: linea retail "al pezzo" di Vintagism S.R.L. (wholesale vintage al kg d
 Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine anni '90 / primi 2000, archivio concettuale.
 
 ## Ancore
-- **Colore**: bianco puro + nero. Oro del logo `#B48D54` solo come segnale (squadrette all'hover, una riga del manifesto).
-- **Motivo**: le squadrette d'angolo del logo, filetto 1px, su immagini e logotipo. Righe con filetto come link.
+- **Colore**: bianco puro + nero. Oro del logo `#B48C55` come colore di segnale: squadrette, tag Rare, voce attiva, hover.
+- **Logo**: `assets/va-logo.svg` (quadrato 600×600, oro con banda ARCHIVE). Indice laterale 112px, header mobile 44px, favicon se non impostata.
+- **Motivo**: le squadrette d'angolo del logo, filetto 1px oro, su immagini; all'hover si chiudono di 4px. Righe con filetto come link.
 - **Tono**: silenzioso, preciso, da catalogo. Numeri di inventario e conteggi a 3 cifre (`010`, `046`).
 
 ## Token (snippets/va-head.liquid)
@@ -17,7 +18,7 @@ Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine a
 | `--va-grey` | `#6f6f6f` | testo secondario (contrasto ≥ 4.5) |
 | `--va-line` | `#e6e6e6` | filetti secondari |
 | `--va-soft` | `#f2f2f2` | sfondo immagini in caricamento |
-| `--va-oro` | `#b48d54` | solo accento, mai testo piccolo |
+| `--va-oro` | `#b48c55` | squadrette su foto, tag Rare (testo nero), trattino voce attiva, hover bottoni/lettere, selezione testo. Mai testo piccolo oro su bianco |
 
 ## Tipografia
 - **Archivo** 400/500/600 per testo, navigazione, card e tabelle.
@@ -46,3 +47,4 @@ Più di due caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento 
 - 25.11.2026 · Manifesto su fascia nera con testo gigante **scartato**: "troppo rumore nella gerarchia visiva". Ora righe numerate su bianco, testo medio, squadretta oro solo sull'ultima regola. Regola generale: nessun blocco a fondo pieno, l'impatto viene dalle parole, non dal contrasto.
 - 25.11.2026 · Titoli passati a **Inter** su richiesta: parallelismo con vintagism.eu (Inter nel sito; i titoli grandi lì sono in Barlow Condensed).
 - 25.11.2026 · Titoli da Inter a **Barlow Condensed 600**, su richiesta: è il carattere dei titoli di vintagism.eu. Corpo titoli aumentato del ~25% perché il condensato a parità di corpo appare più piccolo.
+- 25.11.2026 · Arrivato il **logo ufficiale quadrato** (SVG, oro #B48C55): sostituisce il logotipo testuale. L'oro passa da solo segnale a colore d'accento su squadrette, tag Rare, voce attiva e hover. Testo sempre nero su oro (contrasto).

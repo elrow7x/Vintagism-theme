@@ -1,5 +1,14 @@
 {% doc %}
-  Logotipo testuale Vintagism Archive con le squadrette d'angolo del marchio.
+  Logo Vintagism Archive (quadrato, oro #B48C55) da assets/va-logo.svg.
   Usato quando nelle impostazioni del tema non è caricato un logo immagine.
+
+  @param {string} [class] - classe CSS aggiuntiva
 {% enddoc %}
-<span class="va-mark" aria-label="Vintagism Archive">VINTAGISM<small>ARCHIVE</small></span>
+<img
+  class="va-logo{% if class %} {{ class }}{% endif %}"
+  src="{{ 'va-logo.svg' | asset_url }}"
+  alt="Vintagism Archive"
+  width="600"
+  height="600"
+  loading="eager"
+>

@@ -18,53 +18,15 @@ h1, h2, h3, h4, .h1, .h2, .h3,
   letter-spacing: 0.01em;
   text-transform: uppercase;
 }
-::selection { background: var(--va-k); color: var(--va-w); }
+::selection { background: var(--va-oro); color: var(--va-k); }
 
 /* testo di servizio: piccolo, maiuscolo, spaziato */
 .va-meta, .va-row, .va-index, .va-card__meta, .va-tag, .va-table, .va-brands, .va-sheet__note,
-.va-index__foot, .va-mark {
-  font-family: var(--va-font);
-  font-size: 11px;
-  line-height: 1.5;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.va-meta { color: var(--va-grey); margin: 0 0 12px; }
-.va-grey { color: var(--va-grey); }
-.va-pad { padding-inline: var(--va-pad); }
-.va-block { margin-block: clamp(48px, 7vw, 96px); }
-.va-empty { font-size: 11px; text-transform: uppercase; padding: 16px; border: 1px dashed var(--va-k); }
-
-/* ---------- Squadrette (motivo dal logo) ---------- */
-.va-br { position: relative; }
-.va-br::before, .va-br::after {
-  content: '';
-  position: absolute;
-  width: var(--va-bracket);
-  height: var(--va-bracket);
-  border: 0 solid var(--va-k);
-  z-index: 2;
-  pointer-events: none;
-  transition: border-color 0.2s;
-}
-.va-br::before { top: -7px; left: -7px; border-top-width: 1px; border-left-width: 1px; }
-.va-br::after { bottom: -7px; right: -7px; border-bottom-width: 1px; border-right-width: 1px; }
-a:hover .va-br::before, a:hover .va-br::after,
-a:focus-visible .va-br::before, a:focus-visible .va-br::after { border-color: var(--va-oro); }
-
-.va-mark {
-  position: relative;
-  display: inline-block;
-  padding: 6px 9px;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.28em;
-  color: var(--va-k);
-}
-.va-mark small { display: block; font-weight: 400; font-size: 9px; letter-spacing: 0.42em; margin-top: 3px; }
-.va-mark::before, .va-mark::after { content: ''; position: absolute; width: 8px; height: 8px; border: 0 solid var(--va-k); }
-.va-mark::before { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
-.va-mark::after { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.va-index__foot, /* Logo quadrato (assets/va-logo.svg) */
+.va-logo { display: block; width: 100%; height: auto; }
+.va-index__logo { display: block; width: 112px; }
+#header-group .va-logo { width: auto; height: var(--header-logo-height, 52px); max-height: 52px; }
+@media (max-width: 749px) { #header-group .va-logo { max-height: 44px; } }
 
 /* ---------- Righe con filetto (link, intestazioni) ---------- */
 .va-row {
@@ -77,7 +39,8 @@ a:focus-visible .va-br::before, a:focus-visible .va-br::after { border-color: va
   text-decoration: none;
 }
 .va-row--last { border-bottom: 1px solid var(--va-k); }
-a.va-row:hover span:first-child::before { content: '— '; }
+a.va-row:hover span:first-child::before { content: '— '; color: var(--va-oro); }
+a.va-row:hover { border-top-color: var(--va-oro); }
 .va-row--head { margin-bottom: 20px; }
 
 /* ---------- Indice laterale ---------- */
@@ -86,7 +49,8 @@ a.va-row:hover span:first-child::before { content: '— '; }
 .va-index__list { list-style: none; margin: 0; padding: 0; }
 .va-index__item a { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--va-line); }
 .va-index__item a:hover span:first-child::before,
-.va-index__item.is-current a span:first-child::before { content: '— '; }
+.va-index__item.is-current a span:first-child::before { content: '— '; color: var(--va-oro); }
+.va-index__item.is-current a { border-bottom-color: var(--va-oro); }
 .va-index__item.is-current { font-weight: 600; }
 .va-index__count { color: var(--va-grey); font-weight: 400; }
 .va-index__logo-img { max-width: 150px; height: auto; }
@@ -180,7 +144,7 @@ a.va-row:hover span:first-child::before { content: '— '; }
   padding: 2px 6px;
   font-size: 10px;
 }
-.va-tag--k { background: var(--va-k); color: var(--va-w); }
+.va-tag--k { background: var(--va-oro); color: var(--va-k); }
 
 /* Card Horizon (pagine collezione, ricerca) allineate allo stile */
 .product-card { text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; }
@@ -193,7 +157,7 @@ a.va-row:hover span:first-child::before { content: '— '; }
   background: var(--va-w) !important;
   color: var(--va-k) !important;
 }
-.product-badges__badge.va-badge--rare { background: var(--va-k) !important; color: var(--va-w) !important; }
+.product-badges__badge.va-badge--rare { background: var(--va-oro) !important; color: var(--va-k) !important; }
 .product-badges { display: flex; gap: 4px; }
 
 /* ---------- Tabelle (scheda capo, storia) ---------- */
@@ -245,13 +209,13 @@ a.va-row:hover span:first-child::before { content: '— '; }
   min-width: 28px; height: 28px; display: grid; place-items: center;
   border: 1px solid var(--va-k); color: var(--va-k); text-decoration: none;
 }
-.va-brands__letters a:hover { background: var(--va-k); color: var(--va-w); }
+.va-brands__letters a:hover { background: var(--va-oro); border-color: var(--va-oro); color: var(--va-k); }
 .va-brands__cols { columns: 4 180px; column-gap: 32px; }
 .va-brands__group { break-inside: avoid; margin-bottom: 24px; scroll-margin-top: 100px; }
 .va-brands__letter { margin: 0 0 4px; font-weight: 600; }
 .va-brands__group ul { list-style: none; margin: 0; padding: 0; }
 .va-brands__group li a { display: flex; justify-content: space-between; padding: 5px 0; border-top: 1px solid var(--va-line); color: var(--va-k); text-decoration: none; }
-.va-brands__group li a:hover span:first-child::before { content: '— '; }
+.va-brands__group li a:hover span:first-child::before { content: '— '; color: var(--va-oro); }
 
 /* ---------- Storia ---------- */
 .va-story__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
@@ -277,3 +241,7 @@ footer { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* Pezzo unico: niente selettore quantità nella scheda prodotto */
 .buy-buttons-block .quantity-selector-wrapper { display: none !important; }
+
+/* Oro del logo sui bottoni principali al passaggio del mouse */
+.button:not(.button-unstyled):not(.button-secondary):hover,
+.add-to-cart-button:hover { background-color: var(--va-oro) !important; border-color: var(--va-oro) !important; color: var(--va-k) !important; }

@@ -19,7 +19,7 @@
     --va-grey: #6f6f6f;
     --va-line: #e6e6e6;
     --va-soft: #f2f2f2;
-    --va-oro: #b48d54;
+    --va-oro: #b48c55;
 
     --va-font: 'VA Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --va-font-display: 'VA Barlow Condensed', 'Barlow Condensed', 'Arial Narrow', sans-serif;
@@ -35,4 +35,7 @@
     --font-heading--spacing: 0;
   }
 </style>
+{%- if settings.favicon == blank -%}
+  <link rel="icon" type="image/svg+xml" href="{{ 'va-logo.svg' | asset_url }}">
+{%- endif -%}
 {{ 'vintagism.css' | asset_url | stylesheet_tag }}

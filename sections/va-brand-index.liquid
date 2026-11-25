@@ -1,0 +1,64 @@
+{%- liquid
+  assign vendors = shop.vendors | sort_natural
+  assign letters = ''
+  for v in vendors
+    assign l = v | slice: 0 | upcase
+    unless letters contains l
+      assign letters = letters | append: l
+    endunless
+  endfor
+  assign letters_arr = letters | split: ''
+-%}
+<section class="va-section va-brands" data-va-section>
+  <header class="va-section__head">
+    <div>
+      <p class="va-label">{{ section.settings.kicker }}</p>
+      <h2 class="va-h2">{{ section.settings.title_1 }} <em>{{ section.settings.title_accent }}</em></h2>
+    </div>
+    <p class="va-brands__count va-mono">{{ vendors.size }} brand in archivio</p>
+  </header>
+
+  {%- if vendors.size > 0 -%}
+    <nav class="va-brands__letters" aria-label="Lettere">
+      {%- for l in letters_arr -%}<a href="#va-brand-{{ l }}">{{ l }}</a>{%- endfor -%}
+    </nav>
+    <div class="va-brands__cols">
+      {%- for l in letters_arr -%}
+        <div class="va-brands__group" id="va-brand-{{ l }}">
+          <span class="va-brands__letter">{{ l }}</span>
+          <ul>
+            {%- for v in vendors -%}
+              {%- assign first = v | slice: 0 | upcase -%}
+              {%- if first == l -%}
+                {%- liquid
+                  assign c = 0
+                  for p in collections.all.products
+                    if p.vendor == v
+                      assign c = c | plus: 1
+                    endif
+                  endfor
+                -%}
+                <li><a href="{{ v | url_for_vendor }}">{{ v }}</a><span class="va-mono">{{ c }}</span></li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <p class="va-empty">[Da completare] I brand compaiono qui in automatico appena carichi i capi.</p>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "VA · Brand A–Z",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Designer" },
+    { "type": "text", "id": "title_1", "label": "Titolo", "default": "Brand" },
+    { "type": "text", "id": "title_accent", "label": "Titolo (corsivo)", "default": "dalla A alla Z" }
+  ],
+  "presets": [{ "name": "VA · Brand A–Z" }]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{% doc %}
+  Vintagism Archive: font self-hosted, token di design e foglio di stile del brand.
+  Renderizzato in layout/theme.liquid subito dopo 'color-palette' così sovrascrive i default di Horizon.
+{% enddoc %}
+<link rel="preload" href="{{ 'va-archivo-expanded-500.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'va-archivo-400.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face { font-family: 'VA Archivo'; src: url('{{ 'va-archivo-400.woff2' | asset_url }}') format('woff2'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'VA Archivo'; src: url('{{ 'va-archivo-500.woff2' | asset_url }}') format('woff2'); font-weight: 500 700; font-display: swap; }
+  @font-face { font-family: 'VA Archivo Expanded'; src: url('{{ 'va-archivo-expanded-400.woff2' | asset_url }}') format('woff2'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'VA Archivo Expanded'; src: url('{{ 'va-archivo-expanded-500.woff2' | asset_url }}') format('woff2'); font-weight: 500 700; font-display: swap; }
+  @font-face { font-family: 'VA Instrument Serif'; src: url('{{ 'va-instrument-serif-italic.woff2' | asset_url }}') format('woff2'); font-style: italic; font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'VA Plex Mono'; src: url('{{ 'va-plex-mono-400.woff2' | asset_url }}') format('woff2'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'VA Plex Mono'; src: url('{{ 'va-plex-mono-500.woff2' | asset_url }}') format('woff2'); font-weight: 500 700; font-display: swap; }
+
+  :root {
+    --va-intonaco: #f3f1ed;
+    --va-cemento: #d9d6d0;
+    --va-cemento-scuro: #a9a59e;
+    --va-nero: #171614;
+    --va-oro: #b48d54;
+    --va-ottone: #7a5a2b;
+
+    --va-font-display: 'VA Archivo Expanded', 'Archivo', system-ui, sans-serif;
+    --va-font-body: 'VA Archivo', system-ui, sans-serif;
+    --va-font-accent: 'VA Instrument Serif', Georgia, serif;
+    --va-font-mono: 'VA Plex Mono', ui-monospace, monospace;
+
+    --font-body--family: var(--va-font-body);
+    --font-subheading--family: var(--va-font-body);
+    --font-heading--family: var(--va-font-display);
+    --font-accent--family: var(--va-font-display);
+    --font-heading--weight: 500;
+    --font-heading--spacing: 0.04em;
+
+    --va-gutter: clamp(1rem, 3vw, 2.5rem);
+    --va-section: clamp(3.5rem, 8vw, 7.5rem);
+    --va-bracket: clamp(14px, 1.6vw, 22px);
+  }
+</style>
+{{ 'vintagism.css' | asset_url | stylesheet_tag }}

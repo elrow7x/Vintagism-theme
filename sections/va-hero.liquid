@@ -1,0 +1,65 @@
+{%- liquid
+  assign hero_products = collections.all.products | where: 'available'
+-%}
+<section class="va-hero" data-va-section>
+  <div class="va-hero__inner">
+    <div class="va-hero__copy">
+      <p class="va-label va-reveal">{{ section.settings.kicker }}</p>
+      <h1 class="va-hero__title va-reveal">
+        {{ section.settings.title_1 }}
+        <em>{{ section.settings.title_accent }}</em>
+        {{ section.settings.title_2 }}
+      </h1>
+      <p class="va-hero__text va-reveal">{{ section.settings.text }}</p>
+      <div class="va-hero__cta va-reveal">
+        <a class="va-btn" href="{{ section.settings.cta_1_url | default: '/collections/all' }}">{{ section.settings.cta_1 }}</a>
+        <a class="va-btn va-btn--ghost" href="{{ section.settings.cta_2_url | default: '/collections/all?view=brands' }}">{{ section.settings.cta_2 }}</a>
+      </div>
+      <dl class="va-hero__facts va-reveal">
+        <div><dt>Dal</dt><dd>1995</dd></div>
+        <div><dt>Pezzi</dt><dd>Unici</dd></div>
+        <div><dt>Da</dt><dd>Napoli</dd></div>
+      </dl>
+    </div>
+    <div class="va-hero__stack" aria-hidden="true">
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign key = 'image_' | append: i
+          assign img = section.settings[key]
+          assign idx = i | minus: 1
+          if img == blank
+            assign img = hero_products[idx].featured_media
+          endif
+        -%}
+        {%- if img -%}
+          <figure class="va-hero__frame va-hero__frame--{{ i }} va-brackets">
+            {{ img | image_url: width: 1100 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 30vw, 60vw', widths: '400, 700, 1100', alt: '' }}
+            <figcaption class="va-mono">N° {{ i | prepend: '00' }}</figcaption>
+          </figure>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "VA · Hero archivio",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Vintagism Archive — Napoli" },
+    { "type": "text", "id": "title_1", "label": "Titolo (prima parte)", "default": "Il vintage" },
+    { "type": "text", "id": "title_accent", "label": "Titolo (corsivo)", "default": "scelto a mano," },
+    { "type": "text", "id": "title_2", "label": "Titolo (seconda parte)", "default": "un pezzo alla volta." },
+    { "type": "textarea", "id": "text", "label": "Testo", "default": "Dal 1995 selezioniamo vintage per i negozi di tutta Europa. Ora apriamo l'archivio: capi firmati e pezzi unici, misurati e fotografati uno per uno." },
+    { "type": "text", "id": "cta_1", "label": "Bottone 1", "default": "Esplora l'archivio" },
+    { "type": "url", "id": "cta_1_url", "label": "Link bottone 1" },
+    { "type": "text", "id": "cta_2", "label": "Bottone 2", "default": "Brand A–Z" },
+    { "type": "url", "id": "cta_2_url", "label": "Link bottone 2" },
+    { "type": "image_picker", "id": "image_1", "label": "Immagine 1 (vuoto = primo capo)" },
+    { "type": "image_picker", "id": "image_2", "label": "Immagine 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Immagine 3" }
+  ],
+  "presets": [{ "name": "VA · Hero archivio" }]
+}
+{% endschema %}

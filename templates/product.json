@@ -148,9 +148,35 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "va_vendor": {
+                  "type": "text",
+                  "name": "t:names.title",
+                  "settings": {
+                    "text": "<p>{{ closest.product.vendor }}</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "uppercase",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
+                "va_vendor",
                 "text_xpVMaM",
                 "price_tVjtKg"
               ]
@@ -240,10 +266,18 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "va_archive": {
+              "type": "va-archive-card",
+              "settings": {
+                "heading": "Scheda d'archivio",
+                "note": "Pezzo unico. Misure prese a capo disteso: confrontale con un tuo capo simile."
+              }
             }
           },
           "block_order": [
             "group_icgrde",
+            "va_archive",
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",

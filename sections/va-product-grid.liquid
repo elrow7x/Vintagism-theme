@@ -1,0 +1,57 @@
+{%- liquid
+  assign src = section.settings.collection
+  if src == blank
+    assign src = collections.all
+  endif
+  assign limit = section.settings.limit
+  assign filter_tag = section.settings.filter_tag | downcase | strip
+  assign shown = 0
+-%}
+<section class="va-section va-grid-section" data-va-section>
+  <header class="va-section__head">
+    <div>
+      <p class="va-label">{{ section.settings.kicker }}</p>
+      <h2 class="va-h2">{{ section.settings.title_1 }} <em>{{ section.settings.title_accent }}</em></h2>
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a class="va-link-arrow" href="{{ section.settings.link_url | default: '/collections/all' }}">{{ section.settings.link_label }}</a>
+    {%- endif -%}
+  </header>
+  <div class="va-grid">
+    {%- for product in src.products -%}
+      {%- liquid
+        if shown >= limit
+          break
+        endif
+        if filter_tag != blank
+          assign tags_down = product.tags | join: '|' | downcase | split: '|'
+          unless tags_down contains filter_tag
+            continue
+          endunless
+        endif
+        assign shown = shown | plus: 1
+      -%}
+      <div class="va-reveal">{% render 'va-card', product: product, sizes: '(min-width: 990px) 25vw, 50vw' %}</div>
+    {%- else -%}
+      <p class="va-empty">[Da completare] Importa i prodotti demo per vedere la griglia.</p>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "VA · Griglia capi",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Nuovi in archivio" },
+    { "type": "text", "id": "title_1", "label": "Titolo", "default": "Appena" },
+    { "type": "text", "id": "title_accent", "label": "Titolo (corsivo)", "default": "catalogati" },
+    { "type": "collection", "id": "collection", "label": "Collezione (vuoto = tutti i capi)" },
+    { "type": "text", "id": "filter_tag", "label": "Filtra per tag (es. rare)" },
+    { "type": "range", "id": "limit", "label": "Numero capi", "min": 4, "max": 24, "step": 4, "default": 8 },
+    { "type": "text", "id": "link_label", "label": "Testo link", "default": "Vedi tutto" },
+    { "type": "text", "id": "link_url", "label": "Link", "default": "/collections/all" }
+  ],
+  "presets": [{ "name": "VA · Griglia capi" }]
+}
+{% endschema %}

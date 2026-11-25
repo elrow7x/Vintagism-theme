@@ -1,0 +1,26 @@
+{% doc %}
+  Restituisce un dato della scheda d'archivio di un capo.
+  Ordine: metafield product.metafields.custom.<key>, poi tag "<key>:valore".
+
+  @param {product} product - Il prodotto
+  @param {string} key - decennio | taglia | misure | condizione | difetti | materiale | inv
+{% enddoc %}
+{%- liquid
+  assign value = product.metafields.custom[key].value
+  if value == blank
+    assign prefix = key | append: ':'
+    for tag in product.tags
+      if tag contains prefix
+        assign first = tag | slice: 0, prefix.size
+        if first == prefix
+          assign value = tag | remove_first: prefix | strip
+          break
+        endif
+      endif
+    endfor
+  endif
+  if value == blank and key == 'inv'
+    assign value = product.selected_or_first_available_variant.sku
+  endif
+  echo value
+-%}

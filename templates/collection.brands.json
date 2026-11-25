@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "brands": {
+      "type": "va-brand-index",
+      "settings": {
+        "kicker": "Designer",
+        "title_1": "Brand",
+        "title_accent": "dalla A alla Z"
+      }
+    }
+  },
+  "order": [
+    "brands"
+  ]
+}

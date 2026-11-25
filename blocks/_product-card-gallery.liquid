@@ -2,7 +2,8 @@
 
 {% capture children %}
   {% unless product == blank %}
-    {%- if product.available == false or product.compare_at_price > product.price -%}
+    {%- assign va_tags = product.tags | join: '|' | downcase | split: '|' -%}
+    {%- if product.available == false or product.compare_at_price > product.price or va_tags contains 'rare' or va_tags contains 'new' -%}
       <div
         class="product-badges product-badges--{{ settings.badge_position }}"
         style="
@@ -10,6 +11,7 @@
             --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
         "
       >
+        {%- if product.available == false or product.compare_at_price > product.price -%}
         <div
           class="
             product-badges__badge product-badges__badge--rectangle
@@ -22,6 +24,9 @@
             {{ 'content.product_badge_sale' | t }}
           {%- endif -%}
         </div>
+        {%- endif -%}
+        {%- if va_tags contains 'rare' -%}<div class="product-badges__badge product-badges__badge--rectangle va-badge--rare">Rare</div>{%- endif -%}
+        {%- if product.available and va_tags contains 'new' -%}<div class="product-badges__badge product-badges__badge--rectangle va-badge--new">New</div>{%- endif -%}
       </div>
     {%- endif -%}
     {% if product.available and settings.quick_add or settings.mobile_quick_add %}

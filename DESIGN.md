@@ -20,7 +20,8 @@ Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine a
 | `--va-oro` | `#b48d54` | solo accento, mai testo piccolo |
 
 ## Tipografia
-- Un solo carattere: **Archivo** 400/500/600, self-hosted.
+- **Archivo** 400/500/600 per testo, navigazione, card e tabelle.
+- **Inter** 500/600 per i titoli (h1–h3, apertura, manifesto, titolo prodotto): richiamo diretto al sito principale vintagism.eu, che usa Inter. Self-hosted.
 - Servizio (nav, card, tabelle): 11px, maiuscolo, tracking 0.06em.
 - Titoli: 500, maiuscolo, interlinea ~1, al massimo uno per schermata.
 - Testo corrente: 13px, interlinea 1.6.
@@ -37,9 +38,10 @@ Letti da metafield `custom.<chiave>` o, in mancanza, da tag `chiave:valore`:
 Link di navigazione su pagine native Shopify: `/collections/types?q=<Tipo>`, `/collections/all/<tag>`, `/collections/all?view=brands`.
 
 ## Da evitare
-Mix di caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento grid, glassmorphism, animazioni decorative.
+Più di due caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento grid, glassmorphism, animazioni decorative.
 
 ## Registro feedback
 - 25.11.2026 · Prima direzione (grotesk espanso + serif corsivo Instrument, sfondo intonaco, grana) **scartata**: "alternanza di font non funziona", serve più carattere e minimalismo per un top spender.
 - 25.11.2026 · Proposte A Index / B Inventario (mono) / C Negativo (nero, condensato). **Scelta A · Index**. Aggiunto manifesto nero (da C) come unica sezione d'impatto, rimovibile dall'editor.
 - 25.11.2026 · Manifesto su fascia nera con testo gigante **scartato**: "troppo rumore nella gerarchia visiva". Ora righe numerate su bianco, testo medio, squadretta oro solo sull'ultima regola. Regola generale: nessun blocco a fondo pieno, l'impatto viene dalle parole, non dal contrasto.
+- 25.11.2026 · Titoli passati a **Inter** su richiesta: parallelismo con vintagism.eu (Inter nel sito; i titoli grandi lì sono in Barlow Condensed).

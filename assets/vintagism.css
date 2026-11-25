@@ -1,6 +1,6 @@
 /* ==========================================================================
    Vintagism Archive · direzione "Index"
-   Un carattere (Archivo), bianco e nero, filetti, squadrette ad angolo retto.
+   Archivo per testo e dati, Inter per i titoli, bianco e nero, filetti, squadrette ad angolo retto.
    Token in snippets/va-head.liquid · regole in DESIGN.md
    ========================================================================== */
 
@@ -11,10 +11,11 @@ body {
   font-size: 13px;
   letter-spacing: 0.01em;
 }
-h1, h2, h3, h4, .h1, .h2, .h3 {
-  font-family: var(--va-font);
+h1, h2, h3, h4, .h1, .h2, .h3,
+.va-hero__title, .va-manifesto__line {
+  font-family: var(--va-font-display);
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
 }
 ::selection { background: var(--va-k); color: var(--va-w); }

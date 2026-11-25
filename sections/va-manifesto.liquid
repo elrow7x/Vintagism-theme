@@ -1,28 +1,29 @@
-<section class="va-manifesto">
-  <div class="va-pad">
-    <p class="va-meta va-manifesto__kicker">{{ section.settings.kicker }}</p>
-    <p class="va-manifesto__text">
-      {%- for block in section.blocks -%}
-        <span class="{% if block.settings.accent %}is-accent{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.line }}</span>
-      {%- endfor -%}
-    </p>
-  </div>
-</section>
+<div class="va-pad va-block va-manifesto">
+  <div class="va-row va-row--head"><span>{{ section.settings.kicker }}</span><span class="va-grey">{{ section.blocks.size | prepend: '00' | slice: -3, 3 }}</span></div>
+  <ol class="va-manifesto__list">
+    {%- for block in section.blocks -%}
+      <li class="va-manifesto__item{% if block.settings.accent %} is-accent{% endif %}" {{ block.shopify_attributes }}>
+        <span class="va-manifesto__n">{{ forloop.index | prepend: '0' }}</span>
+        <span class="va-manifesto__line">{{ block.settings.line }}</span>
+      </li>
+    {%- endfor -%}
+  </ol>
+</div>
 
 {% schema %}
 {
   "name": "VA · Manifesto",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Riga sopra", "default": "Regole dell'archivio" }
+    { "type": "text", "id": "kicker", "label": "Titolo riga", "default": "Regole dell'archivio" }
   ],
   "blocks": [
     {
       "type": "line",
-      "name": "Riga",
+      "name": "Regola",
       "settings": [
         { "type": "text", "id": "line", "label": "Testo", "default": "Non ristampiamo." },
-        { "type": "checkbox", "id": "accent", "label": "Oro", "default": false }
+        { "type": "checkbox", "id": "accent", "label": "Segna con squadretta oro", "default": false }
       ]
     }
   ],

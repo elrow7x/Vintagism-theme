@@ -176,6 +176,10 @@
                 assign sizes = featured_media_sizes
               else
                 assign loading = 'lazy'
+                # Vintagism: la seconda foto mostrata in hover si scarica subito, niente flash bianco
+                if settings.show_second_image_on_hover and visible_slide_count == 2
+                  assign loading = 'eager'
+                endif
                 assign sizes = 'auto, ' | append: image_sizes
               endif
 

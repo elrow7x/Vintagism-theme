@@ -1,17 +1,17 @@
 {% doc %}
-  Vintagism Archive · direzione "Index": Archivo per testo e dati, Inter per i titoli, bianco/nero, filetti, squadrette.
+  Vintagism Archive · direzione "Index": Archivo per testo e dati, Barlow Condensed per i titoli, bianco/nero, filetti, squadrette.
   Renderizzato in layout/theme.liquid subito dopo 'color-palette' così sovrascrive i default di Horizon.
 {% enddoc %}
 <link rel="preload" href="{{ 'va-archivo-400.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ 'va-archivo-500.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'va-inter-500.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'va-barlow-condensed-600.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <style>
   @font-face { font-family: 'VA Archivo'; src: url('{{ 'va-archivo-400.woff2' | asset_url }}') format('woff2'); font-weight: 400; font-display: swap; }
   @font-face { font-family: 'VA Archivo'; src: url('{{ 'va-archivo-500.woff2' | asset_url }}') format('woff2'); font-weight: 500; font-display: swap; }
   @font-face { font-family: 'VA Archivo'; src: url('{{ 'va-archivo-600.woff2' | asset_url }}') format('woff2'); font-weight: 600 700; font-display: swap; }
-  /* Titoli in Inter: richiamo al sito principale vintagism.eu */
-  @font-face { font-family: 'VA Inter'; src: url('{{ 'va-inter-500.woff2' | asset_url }}') format('woff2'); font-weight: 500; font-display: swap; }
-  @font-face { font-family: 'VA Inter'; src: url('{{ 'va-inter-600.woff2' | asset_url }}') format('woff2'); font-weight: 600 700; font-display: swap; }
+  /* Titoli in Barlow Condensed: lo stesso carattere dei titoli di vintagism.eu */
+  @font-face { font-family: 'VA Barlow Condensed'; src: url('{{ 'va-barlow-condensed-500.woff2' | asset_url }}') format('woff2'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'VA Barlow Condensed'; src: url('{{ 'va-barlow-condensed-600.woff2' | asset_url }}') format('woff2'); font-weight: 600 700; font-display: swap; }
 
   :root {
     --va-k: #000000;
@@ -22,7 +22,7 @@
     --va-oro: #b48d54;
 
     --va-font: 'VA Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --va-font-display: 'VA Inter', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --va-font-display: 'VA Barlow Condensed', 'Barlow Condensed', 'Arial Narrow', sans-serif;
     --va-side: 220px;
     --va-pad: clamp(16px, 2.4vw, 32px);
     --va-bracket: 14px;

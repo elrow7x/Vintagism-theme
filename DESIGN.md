@@ -21,7 +21,7 @@ Cliente target: top spender, compratore esperto. Riferimento: Helmut Lang fine a
 
 ## Tipografia
 - **Archivo** 400/500/600 per testo, navigazione, card e tabelle.
-- **Inter** 500/600 per i titoli (h1–h3, apertura, manifesto, titolo prodotto): richiamo diretto al sito principale vintagism.eu, che usa Inter. Self-hosted.
+- **Barlow Condensed** 600 per i titoli (h1–h3, apertura, manifesto, titolo prodotto): lo stesso carattere dei titoli di vintagism.eu, così i due siti si riconoscono come una famiglia. Self-hosted, licenza SIL OFL.
 - Servizio (nav, card, tabelle): 11px, maiuscolo, tracking 0.06em.
 - Titoli: 500, maiuscolo, interlinea ~1, al massimo uno per schermata.
 - Testo corrente: 13px, interlinea 1.6.
@@ -45,3 +45,4 @@ Più di due caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento 
 - 25.11.2026 · Proposte A Index / B Inventario (mono) / C Negativo (nero, condensato). **Scelta A · Index**. Aggiunto manifesto nero (da C) come unica sezione d'impatto, rimovibile dall'editor.
 - 25.11.2026 · Manifesto su fascia nera con testo gigante **scartato**: "troppo rumore nella gerarchia visiva". Ora righe numerate su bianco, testo medio, squadretta oro solo sull'ultima regola. Regola generale: nessun blocco a fondo pieno, l'impatto viene dalle parole, non dal contrasto.
 - 25.11.2026 · Titoli passati a **Inter** su richiesta: parallelismo con vintagism.eu (Inter nel sito; i titoli grandi lì sono in Barlow Condensed).
+- 25.11.2026 · Titoli da Inter a **Barlow Condensed 600**, su richiesta: è il carattere dei titoli di vintagism.eu. Corpo titoli aumentato del ~25% perché il condensato a parità di corpo appare più piccolo.

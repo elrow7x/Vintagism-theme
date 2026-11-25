@@ -1,6 +1,6 @@
 /* ==========================================================================
    Vintagism Archive · direzione "Index"
-   Archivo per testo e dati, Inter per i titoli, bianco e nero, filetti, squadrette ad angolo retto.
+   Archivo per testo e dati, Barlow Condensed per i titoli, bianco e nero, filetti, squadrette ad angolo retto.
    Token in snippets/va-head.liquid · regole in DESIGN.md
    ========================================================================== */
 
@@ -14,8 +14,8 @@ body {
 h1, h2, h3, h4, .h1, .h2, .h3,
 .va-hero__title, .va-manifesto__line {
   font-family: var(--va-font-display);
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 ::selection { background: var(--va-k); color: var(--va-w); }
@@ -144,8 +144,8 @@ a.va-row:hover span:first-child::before { content: '— '; }
 .va-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .va-hero__copy { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
 .va-hero__title {
-  font-size: clamp(30px, 3.2vw, 46px);
-  line-height: 1.02;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 0.98;
   letter-spacing: -0.01em;
   margin: 0;
   max-width: 12ch;
@@ -226,8 +226,8 @@ a.va-row:hover span:first-child::before { content: '— '; }
 .va-manifesto__n { font-size: 11px; letter-spacing: 0.06em; color: var(--va-grey); }
 .va-manifesto__line {
   font-weight: 500;
-  font-size: clamp(20px, 2.1vw, 30px);
-  line-height: 1.15;
+  font-size: clamp(24px, 2.5vw, 36px);
+  line-height: 1.1;
   letter-spacing: -0.005em;
   text-transform: uppercase;
 }

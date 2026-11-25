@@ -42,3 +42,4 @@ Mix di caratteri, serif corsivi, grotesk espansi, nero+oro "luxury", bento grid,
 ## Registro feedback
 - 25.11.2026 · Prima direzione (grotesk espanso + serif corsivo Instrument, sfondo intonaco, grana) **scartata**: "alternanza di font non funziona", serve più carattere e minimalismo per un top spender.
 - 25.11.2026 · Proposte A Index / B Inventario (mono) / C Negativo (nero, condensato). **Scelta A · Index**. Aggiunto manifesto nero (da C) come unica sezione d'impatto, rimovibile dall'editor.
+- 25.11.2026 · Manifesto su fascia nera con testo gigante **scartato**: "troppo rumore nella gerarchia visiva". Ora righe numerate su bianco, testo medio, squadretta oro solo sull'ultima regola. Regola generale: nessun blocco a fondo pieno, l'impatto viene dalle parole, non dal contrasto.
